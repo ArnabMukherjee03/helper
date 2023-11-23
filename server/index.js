@@ -1,4 +1,5 @@
 require('dotenv').config();
+const express = require("express");
 const server = require('./src/app');
 const {connection} = require('./src/database/dbConfig');
 const { initializeSocket } = require('./src/utils/socket');
