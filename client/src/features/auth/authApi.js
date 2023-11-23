@@ -15,7 +15,7 @@ export function signup(signupData) {
 export function login(loginData) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await axios.post("/auth/login",loginData);
+      const response = await axios.post("https://helperapi-chi.vercel.app/auth/login",loginData);
       const data = await response.data;
       resolve({ data });
     } catch (error) {

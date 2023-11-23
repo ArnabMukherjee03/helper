@@ -11,7 +11,7 @@ export function fetchAtms(filter) {
     }
     console.log(queryString);
     try {
-      const response = await axios.get("/atm/fetchAtms?"+ queryString);
+      const response = await axios.get("https://helperapi-chi.vercel.app/atm/fetchAtms?"+ queryString);
       const data = await response.data;
       resolve({ data });
     } catch (error) {
@@ -24,7 +24,7 @@ export function fetchAtmById(id) {
   return new Promise(async (resolve, reject) => {
    
     try {
-      const response = await axios.get(`/atm/fetchAtm/${id}`);
+      const response = await axios.get(`https://helperapi-chi.vercel.app/atm/fetchAtm/${id}`);
       const data = await response.data;
       resolve({ data });
     } catch (error) {
