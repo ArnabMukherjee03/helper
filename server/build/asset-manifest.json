@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d86c5684.css",
+    "main.js": "/static/js/main.3d917c1f.js",
+    "static/media/atm-operation-bank.jpg": "/static/media/atm-operation-bank.2eefa16f86bc0a0de361.jpg",
+    "static/media/Avatar.jpg": "/static/media/Avatar.6e5ccc4f9072f0731328.jpg",
+    "static/media/map.jpg": "/static/media/map.82dd52d2c5bad916ac60.jpg",
+    "index.html": "/index.html",
+    "main.d86c5684.css.map": "/static/css/main.d86c5684.css.map",
+    "main.3d917c1f.js.map": "/static/js/main.3d917c1f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d86c5684.css",
+    "static/js/main.3d917c1f.js"
+  ]
+}
