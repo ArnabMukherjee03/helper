@@ -8,12 +8,14 @@ const port = process.env.PORT;
 //* DataBase Connection
 connection();
 
+console.log(__dirname)
+
 // Your code
 if (process.env.NODE_ENV === "production") {
     const path = require("path");
-    server.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    server.use(express.static(path.resolve(__dirname, 'build')));
     server.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'),function (err) {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'),function (err) {
             if(err) {
                 res.status(500).send(err)
             }
