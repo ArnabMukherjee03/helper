@@ -5,7 +5,7 @@ let io;
 function initializeSocket(server) {
     io = socketIO(server, {
         cors: {
-            origin: 'http://localhost:3000', // Replace with your frontend's actual origin
+            origin: 'https://helper-topaz.vercel.app', // Replace with your frontend's actual origin
             methods: ['GET', 'POST','PUT'],
         },
      });
