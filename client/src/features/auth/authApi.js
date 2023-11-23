@@ -27,7 +27,7 @@ export function login(loginData) {
 export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await axios.get("/auth/check");
+      const response = await axios.get("https://helperapi-chi.vercel.app/auth/check");
       const data = await response.data;
       resolve({ data });
     } catch (error) {
@@ -80,7 +80,7 @@ export function logOut() {
   return new Promise(async (resolve, reject) => {
     try {
 
-      const response = await axios.get("/auth/logout");
+      const response = await axios.get("https://helperapi-chi.vercel.app/auth/logout");
       const data = await response.data;
       resolve({ data });
     } catch (error) {
