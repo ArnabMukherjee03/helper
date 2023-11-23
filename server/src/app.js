@@ -36,7 +36,15 @@ app.use(passport.authenticate("session"));
 
 initializePassport(passport);
 
-app.use(cors());
+const corsOpts = {
+  origin: 'https://helper-topaz.vercel.app',
+  credentials: true,
+  methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+  allowedHeaders: ['Content-Type'],
+  exposedHeaders: ['Content-Type']
+};
+app.use(cors(corsOpts));
+
 
 
 // $ Routes Endpoints
