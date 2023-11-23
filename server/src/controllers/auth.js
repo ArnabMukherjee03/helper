@@ -88,7 +88,6 @@ exports.login = (req, res, next) => {
         res.cookie("jwt", token, {
           expires: new Date(Date.now() + 3600000),
           httpOnly: true,
-          domain:"vercel.app"
         });
 
         

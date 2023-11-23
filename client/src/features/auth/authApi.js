@@ -15,7 +15,7 @@ export function signup(signupData) {
 export function login(loginData) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await axios.post("https://helperapi-chi.vercel.app/auth/login",loginData);
+      const response = await axios.post("/auth/login",loginData);
       const data = await response.data;
       resolve({ data });
     } catch (error) {
@@ -27,7 +27,7 @@ export function login(loginData) {
 export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await axios.get("https://helperapi-chi.vercel.app/auth/check");
+      const response = await axios.get("/auth/check");
       const data = await response.data;
       resolve({ data });
     } catch (error) {
@@ -42,7 +42,7 @@ export function resetPassreq(email) {
       const emaildata = {
         email: email
       }
-      const response = await axios.post("auth/resetpasswordreq",emaildata);
+      const response = await axios.post("/auth/resetpasswordreq",emaildata);
       const data = await response.data;
       resolve({ data });
     } catch (error) {
@@ -80,7 +80,7 @@ export function logOut() {
   return new Promise(async (resolve, reject) => {
     try {
 
-      const response = await axios.get("https://helperapi-chi.vercel.app/auth/logout");
+      const response = await axios.get("/auth/logout");
       const data = await response.data;
       resolve({ data });
     } catch (error) {

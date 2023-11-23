@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import { useParams } from 'react-router-dom';
 
 const Review = () => {
-    const socket = io.connect('https://helperapi-chi.vercel.app');
+    const socket = io.connect('http://localhost:5000');
     const dispatch = useDispatch();
     const review = useSelector(selectReviews);
     const user = useSelector(selectUser);

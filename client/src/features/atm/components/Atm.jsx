@@ -12,7 +12,7 @@ import { selectUser } from "../../auth/authSlice";
 import { atmContext } from "../../../context/AtmContext";
 
 const Atm = () => {
-  const socket = io.connect('https://helperapi-chi.vercel.app');
+  const socket = io.connect('http://localhost:5000');
   const {setPopup} = useContext(atmContext);
 
   const [atm,setAtm] = useState([]);

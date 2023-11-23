@@ -10,7 +10,7 @@ const AtmList = () => {
   const dispatch = useDispatch();
   const status = useSelector(selectStatus);
   const Atms = useSelector(selectAtms);
-  const socket = io.connect('https://helperapi-chi.vercel.app');
+  const socket = io.connect('http://localhost:5000');
   
   const [filter,setFilter] = useState({});
   const [atms,setAtms] = useState([]);
