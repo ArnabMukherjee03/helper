@@ -53,7 +53,7 @@ exports.signUp = async (req, res) => {
       expiresIn: "10m",
     });
 
-    const resetPage = `http://localhost:3000/verify/${token}`;
+    const resetPage = `https://helper-green.vercel.app/verify/${token}`;
     const subject = `Please Verify Your Email`;
     const html = `<a href='${resetPage}'>Verify</a>`;
 
@@ -150,7 +150,7 @@ exports.resetPasswordReq = async (req, res) => {
     user.resetToken = token;
     await user.save();
 
-    const resetPage = `http://localhost:3000/resetpassword/${token}`;
+    const resetPage = `https://helper-green.vercel.app/resetpassword/${token}`;
     const subject = `Please Verify it's you,${user.name}, Please click on the link to complete the password reset`;
     const html = `<a href='${resetPage}'>Verify</a>`;
 
