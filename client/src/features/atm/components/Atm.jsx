@@ -1,48 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect} from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Star from "../../Star/Star";
 import {useSelector,useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
-import { fetchAtmByIdAsync, selectCurrentAtm, selectStatus } from "../atmSlice";
-import {getStatusAsync, selectLoading, selectcashStatus, updateStatusAsync } from "../statusSlice";
-import io from "socket.io-client";
+import { fetchAtmByIdAsync, getStatusAsync, selectCashStatus, selectCurrentAtm, selectLoading, selectStatus, updateStatusAsync } from "../atmSlice";
 import { MutatingDots } from "react-loader-spinner";
 import { selectUser } from "../../auth/authSlice";
 import { atmContext } from "../../../context/AtmContext";
 
 const Atm = () => {
-  const socket = io.connect('http://localhost:5000');
+  
   const {setPopup} = useContext(atmContext);
-
-  const [atm,setAtm] = useState([]);
-  const [cashStatus,setcashStatus]= useState([]);
 
   const dispatch = useDispatch();
   const {id} = useParams();
-  const currentAtm = useSelector(selectCurrentAtm);
+  const atm = useSelector(selectCurrentAtm);
   const loading = useSelector(selectLoading);
-  const cashstatus = useSelector(selectcashStatus);
+  const cashStatus = useSelector(selectCashStatus);
   const status = useSelector(selectStatus);
   const isUser = useSelector(selectUser);
-
-  useEffect(()=>{
-    setAtm(currentAtm);
-    setcashStatus(cashstatus)
-  },[currentAtm,cashstatus]);
- 
-  useEffect(()=>{
-    socket.on("updateAtm", ({ updateAtm , savedStatus}) => {
-       console.log("Hello:: ",updateAtm);
-       setAtm(updateAtm);
-       setcashStatus((cashStatus)=>[...cashStatus,savedStatus]);
-    });
-    
-    return () => {
-      socket.off("updateAtm");
-    };
-  },[socket])
-
 
   useEffect(()=>{
       dispatch(fetchAtmByIdAsync(id))
@@ -137,7 +114,7 @@ if(status === "loading"){
             <div className="flex gap-4">
             {
                isUser?
-               <button disabled={loading} onClick={handleItemButtonClick} className={`mt-8 font-secondary text-xs rounded-[4px] py-2 px-4 ${atm && atm.cashstatus?"bg-green-400":"bg-red-500"} text-white  w-[140px] text-center ${loading?"bg-green-300 cursor-not-allowed":"cursor-pointer"}`}>Update Status</button>
+               <button disabled={loading === "loading"} onClick={handleItemButtonClick} className={`mt-8 font-secondary text-xs rounded-[4px] py-2 px-4 ${atm && atm.cashstatus?"bg-green-400":"bg-red-500"} text-white  w-[140px] text-center disabled:cursor-not-allowed`}>Update Status</button>
                :
                <p className="text-red-500 mt-8 font-secondary text-xs">Please Login to Update Status</p>
             }

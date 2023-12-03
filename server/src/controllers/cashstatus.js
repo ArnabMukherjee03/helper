@@ -18,10 +18,8 @@ exports.updateStatus = async(req,res)=>{
         const Status = await newStatus.save();
         const savedStatus = await Status.populate('userId')
         const updateAtm = await Atm.findByIdAndUpdate(atmId,{cashstatus:status}, { new: true });
-
-        getIo().emit('updateAtm',{ updateAtm , savedStatus});
         
-        res.status(200).json(savedStatus);
+        res.status(200).json({atm:updateAtm,status:savedStatus});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error });
