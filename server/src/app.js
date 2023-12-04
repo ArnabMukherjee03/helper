@@ -14,7 +14,7 @@ const atmRouter = require("./routes/atm");
 const statusRouter = require("./routes/cashstatus");
 const reviewRouter = require("./routes/review");
 const dashboardRouter = require("./routes/dashboard");
-
+const requestRouter = require("./routes/req");
 //$ Create the Express application
 const app = express();
 
@@ -47,5 +47,5 @@ app.use("/atm",atmRouter.router);
 app.use("/cashstatus",statusRouter.router);
 app.use("/review",reviewRouter.router);
 app.use("/dashboard",dashboardRouter.router);
-
+app.use("/req",requestRouter.router)
 module.exports = app;

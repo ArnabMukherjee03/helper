@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MutatingDots } from "react-loader-spinner";
 import {NavLink} from "react-router-dom";
 import Star from "../../Star/Star";
 import {useSelector,useDispatch} from "react-redux"
 import { fetchAtmsAsync, selectAtms, selectStatus } from "../atmSlice";
 import atmsvg from "../../../image/atm.svg";
+import { atmContext } from "../../../context/AtmContext";
 
 const AtmList = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const AtmList = () => {
   const atms = useSelector(selectAtms);
   
   
-  const [filter,setFilter] = useState({});
+  const {filter, setFilter} = useContext(atmContext);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
   const toggleNavbar = () => {
@@ -40,7 +41,7 @@ const AtmList = () => {
       const index = newFilter[section].findIndex((el) => el === option);
       newFilter[section].splice(index, 1);
     }
-    setFilter(newFilter);
+    setFilter({...filter,...newFilter})
   };
 
   

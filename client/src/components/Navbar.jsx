@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { logOutAsync, selectUser } from "../features/auth/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink,useLocation} from "react-router-dom";
 import { userAsync } from "../features/user/userSlice";
+import { atmContext } from "../context/AtmContext";
+import Search from "../features/search/Search";
 
 
 const city = [
@@ -24,11 +26,11 @@ const Navbar = () => {
   
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
- 
+  const {filter, setFilter} = useContext(atmContext);
+  
   useEffect(()=>{
     dispatch(userAsync())
   },[dispatch]);
-
 
   const logout = () => {
     dispatch(logOutAsync());
@@ -41,6 +43,24 @@ const Navbar = () => {
   if (isAuthPage) {
     return null;
   }
+
+
+  
+
+const handleFilter = (e, section, option) => {
+  const newFilter = {};
+  if (e.target.value) {
+    if (newFilter[section]) {
+      newFilter[section].push(option);
+    } else {
+      newFilter[section] = [option];
+    }
+  } else {
+    const index = newFilter[section].findIndex((el) => el === option);
+    newFilter[section].splice(index, 1);
+  }
+  setFilter({...filter,...newFilter})
+};
 
 
   return (
@@ -64,22 +84,20 @@ const Navbar = () => {
                 className="w-full font-secondary cursor-pointer pl-2 outline-none font-heading text-xs text-[#757575]"
                 name="city"
                 id=""
+                onChange={(e) => handleFilter(e, "city", e.target.value)}
               >
+                
                 {city.map((city) => {
                   return <option value={city.value}>{city.name}</option>;
                 })}
               </select>
             </div>
             {/* Location */}
-            <div className="hidden lg:flex items-center border-[#3cb878] w-[70%] border-[1.3px] px-4 py-2 gap-2 rounded-lg">
+            <div className="relative hidden lg:flex items-center border-[#3cb878] w-[70%] border-[1.3px] px-4 py-2 gap-2 rounded-lg">
               <div className="w-5 h-5">
               <i className="fa-solid fa-magnifying-glass"></i>
               </div>
-              <input
-                type="text"
-                placeholder="Search your Nearest Atms"
-                className="w-[80%] outline-none font-secondary text-xs"
-              />
+              <Search/>
             </div>
           </div>
           {user ? (

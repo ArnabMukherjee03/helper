@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
-import { fetchAtmById, fetchAtms, getStatus, updateStatus } from "./atmApi";
+import { addAtm, fetchAtmById, fetchAtms, getStatus, updateStatus } from "./atmApi";
 
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
   cashstatus:[],
   atmError:'',
   statusError:'',
+  add: "idle"
 };
 
 export const fetchAtmsAsync = createAsyncThunk(
@@ -49,6 +50,18 @@ export const updateStatusAsync = createAsyncThunk(
   }
 );
 
+export const addAtmAsync = createAsyncThunk(
+  "atm/add",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await addAtm(data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const getStatusAsync = createAsyncThunk(
   "atm/cashstatus/getStatus",
   async (atmId, { rejectWithValue }) => {
@@ -79,6 +92,17 @@ export const atmSlice = createSlice({
       .addCase(fetchAtmsAsync.rejected, (state, action) => {
         state.status = "rejected";
         state.atmError = action.payload;
+      })
+      .addCase(addAtmAsync.pending, (state) => {
+        state.add = "loading";
+      })
+      .addCase(addAtmAsync.fulfilled, (state, action) => {
+        state.add = "idle";
+        toast.success("Your Request Saved");
+      })
+      .addCase(addAtmAsync.rejected, (state, action) => {
+        state.add = "rejected";
+        toast.error("Something Went Wrong");
       })
       .addCase(fetchAtmByIdAsync.pending, (state) => {
         state.status = "loading";

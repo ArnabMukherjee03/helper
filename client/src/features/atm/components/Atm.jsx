@@ -58,7 +58,7 @@ if(status === "loading"){
     // Main Div
     <div className="mx-[30px] lg:mx-[70px]">
       {/* Banner:: Start */}
-      <div className='mt-3 h-[15vh] lg:h-[30vh] flex flex-col justify-center items-center'>
+      <div className='mt-3 -z-10 h-[15vh] lg:h-[30vh] flex flex-col justify-center items-center'>
         <div className="text-[10px] lg:text-xs pb-2 font-secondary"> <i class="fa-solid fa-house-chimney"></i> / ATMs / {atm && atm.name}</div>
         <p className='font-primary leading-[1.2] text-base lg:text-[25px]'><span className="text-[#3cb878]">Find ATM's</span> Near You</p>
         <p className='font-secondary pt-2 leading-[1.2] tracking-wide text-[10px] lg:text-sm'>Keep the community informed about cash availability status.</p>

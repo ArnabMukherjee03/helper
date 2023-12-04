@@ -14,22 +14,32 @@ exports.newAtm = async (req, res) => {
 
 exports.fetchAtms = async (req, res) => {
   try {
-    let query = await Atm.find({});
-      if (req.query.bankname) {
-        query = await Atm.find({bankname: { $in: req.query.bankname.split(",") }});
-      }
-      if (req.query.bankname === "all" || req.query.cashstatus === "all") {
-        query = await Atm.find({});
-      }
-      if (req.query.cashstatus) {
-        query = await Atm.find({ cashstatus: { $in: req.query.cashstatus.split(",") } });
-      }
+    let query = {};
 
-      res.status(200).json(query);
+    if (req.query.bankname && req.query.bankname !== "all") {
+      
+      query.bankname = { $in: req.query.bankname.split(",") };
+
+      if (req.query.cashstatus && req.query.cashstatus !== "all") {
+        query.cashstatus = { $in: req.query.cashstatus.split(",") };
+      }
+    }
+
+    if (req.query.city) {
+      query.city = { $in: req.query.city};
+      if (!req.query.bankname && req.query.cashstatus && req.query.cashstatus !== "all") {
+        query.cashstatus = { $in: req.query.cashstatus.split(",") };
+      }
+    }
+    let result = await Atm.find(query);
+    res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
+
+
+
 
 exports.fetchAtmsbyId = async (req, res) => {
   try {
@@ -58,6 +68,21 @@ exports.deleteAtm = async (req, res) => {
     res.status(201).json(response);
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+exports.search = async (req, res) => {
+  try {
+    const { query } = await req.query;
+    console.log(query);
+    if (!query) {
+      return res.status(400).json({ error: 'Missing search query parameter.' });
+    }
+
+    const results = await Atm.find({ address: { $regex: query, $options: 'i' } });
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 

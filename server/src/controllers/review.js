@@ -22,9 +22,7 @@ exports.newReview = async(req,res)=>{
         const saved = await newReview.save();
         const savedReview = await saved.populate('userId');
 
-        getIo().emit("new-review",{savedReview});
-
-        res.status(200).json("Update Successfull");
+        res.status(200).json(savedReview);
 
     } catch (error) {
         res.status(500).json({message:error});
@@ -52,7 +50,6 @@ exports.deleteReview = async(req,res)=>{
           });
         }
 
-        getIo().emit("delete-review",{deleteReview});
 
         res.status(200).json(deleteReview);
     } catch (error) {

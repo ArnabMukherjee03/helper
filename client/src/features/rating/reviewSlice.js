@@ -59,6 +59,7 @@ export const reviewSlice = createSlice({
       })
       .addCase(newReviewAsync.fulfilled, (state, action) => {
         state.status = "idle";
+        state.reviews.push(action.payload);
         toast.success("Thanks For Rating");
       })
       .addCase(newReviewAsync.rejected, (state, action) => {
@@ -82,6 +83,10 @@ export const reviewSlice = createSlice({
       .addCase(deleteReviewAsync.fulfilled, (state, action) => {
         state.status = "idle";
         toast.success("Comment Sucessfully Deleted");
+        const index = state.reviews.findIndex(
+          (item) => item._id === action.payload._id
+        );
+        state.reviews.splice(index, 1);
       })
       .addCase(deleteReviewAsync.rejected, (state, action) => {
         state.status = "rejected";

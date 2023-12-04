@@ -58,6 +58,18 @@ export function getStatus(atmId) {
   });
 }
 
+export function addAtm(atm) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log(atm);
+      const response = await axios.post("/req/addAtm",atm);
+      const data = await response.data;
+      resolve({ data });
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
 
 

@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import FeatureImg from "../image/atm-operation-bank.jpg"
+import FeatureImg from "../image/atm-operation-bank.jpg";
 import {atmContext} from "../context/AtmContext";
 
 const Featured = () => {

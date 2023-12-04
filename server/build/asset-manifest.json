@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.24fda831.css",
-    "main.js": "/static/js/main.9b50f9e1.js",
+    "main.css": "/static/css/main.9372afcb.css",
+    "main.js": "/static/js/main.e5af7cf2.js",
     "static/media/atm-operation-bank.jpg": "/static/media/atm-operation-bank.2eefa16f86bc0a0de361.jpg",
     "static/media/Avatar.jpg": "/static/media/Avatar.6e5ccc4f9072f0731328.jpg",
     "static/media/map.jpg": "/static/media/map.82dd52d2c5bad916ac60.jpg",
     "static/media/atm.svg": "/static/media/atm.d2a7efcddc1cee0e02d4980745fa82ef.svg",
     "index.html": "/index.html",
-    "main.24fda831.css.map": "/static/css/main.24fda831.css.map",
-    "main.9b50f9e1.js.map": "/static/js/main.9b50f9e1.js.map"
+    "main.9372afcb.css.map": "/static/css/main.9372afcb.css.map",
+    "main.e5af7cf2.js.map": "/static/js/main.e5af7cf2.js.map"
   },
   "entrypoints": [
-    "static/css/main.24fda831.css",
-    "static/js/main.9b50f9e1.js"
+    "static/css/main.9372afcb.css",
+    "static/js/main.e5af7cf2.js"
   ]
 }

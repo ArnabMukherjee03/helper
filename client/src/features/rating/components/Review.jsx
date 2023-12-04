@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import {useSelector,useDispatch} from "react-redux";
 import { deleteReviewAsync, getReviewAsync, selectReviews } from '../reviewSlice';
 import Star from '../../Star/Star';
 import { selectUser } from '../../auth/authSlice';
-import io from "socket.io-client";
 import { useParams } from 'react-router-dom';
 
 const Review = () => {
-    const socket = io.connect('http://localhost:5000');
     const dispatch = useDispatch();
-    const review = useSelector(selectReviews);
+    const reviews = useSelector(selectReviews);
     const user = useSelector(selectUser);
     const {id} = useParams();
-    const[reviews,setReviews] = useState([]);
-    
-
-    useEffect(()=>{
-      setReviews(review);
-    },[review])
-    
+   
     useEffect(()=>{
         dispatch(getReviewAsync(id))
     },[dispatch,id])
@@ -27,35 +19,6 @@ const Review = () => {
         dispatch(deleteReviewAsync(id));
     }
 
-    useEffect(()=>{
-      socket.on("new-review", ({savedReview}) => {
-         setReviews((reviews)=>[...reviews,savedReview]);
-      });
-      
-      return () => {
-        socket.off("new-review");
-      };
-    },[socket]);
-
-
-    useEffect(()=>{
-      socket.on("delete-review", ({deleteReview}) => {
-        const index = reviews.findIndex(
-          (item) => item._id === deleteReview._id
-        );
-        if (index !== -1) {
-          const updatedReview = [...reviews];
-          updatedReview.splice(index,1)
-          setReviews(updatedReview);
-        }
-      });
-      
-      return () => {
-        socket.off("delete-review");
-      };
-    },[socket,reviews]);
-  
-  
 
   return (
     <div className="flex flex-col mt-4 p-10 ">
