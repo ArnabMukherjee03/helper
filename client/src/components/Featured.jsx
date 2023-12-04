@@ -1,5 +1,4 @@
 import React,{useContext} from 'react'
-import FeatureImg from "../image/atm-operation-bank.jpg";
 import {atmContext} from "../context/AtmContext";
 
 const Featured = () => {
@@ -10,7 +9,7 @@ const Featured = () => {
       <div className="flex flex-col w-full h-auto md:flex-row lg:h-[60vh]">
         {/* Banner Image :: Start */}
         <div className="w-full flex items-end lg:w-[60%]">
-          <img className="w-full object-top" src={FeatureImg} alt="" srcset="" />
+          <img className="w-full object-top" src="https://img.freepik.com/free-photo/atm-operation-bank_1359-1202.jpg?w=900&t=st=1701707092~exp=1701707692~hmac=087663336b20ca6d1ce338860cc041d317ace2cfb93126d1fbaf2653490ad1e9" alt="" srcset="" />
         </div>
         {/* Banner Image :: End */}
         {/* Head & Sub Heading :: Start */}
