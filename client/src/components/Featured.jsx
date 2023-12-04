@@ -20,7 +20,7 @@ const Featured = () => {
             <span className="text-[#3cb878]">Help Others </span>
             <br/> 
             Find ATMs
-          </div>
+          </div> 
           <p className="font-secondary pt-2 leading-[1.2] tracking-wide text-sm w-[80%]">Help expand our database by adding new ATM locations</p>
           <div onClick={e=>{setAtm(true)}} className="mt-8 font-secondary text-sm rounded-[4px] py-2 px-4 bg-yellow-400 w-[180px] cursor-pointer text-center">Add New Atm</div>
         </div>
