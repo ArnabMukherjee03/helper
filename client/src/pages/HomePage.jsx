@@ -6,6 +6,7 @@ import Map from '../components/Map';
 import Featured from '../components/Featured';
 
 
+
 const HomePage = () => {
   return (
    <div className="">

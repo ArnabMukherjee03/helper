@@ -19,6 +19,7 @@ import Footer from "./components/Footer";
 import AddAtm from "./features/atm/components/AddAtm";
 import { atmContext } from "./context/AtmContext";
 import Account from "./features/user/components/Account";
+import SearchNav from "./components/SearchNav";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <>
       <Toaster position="top-left"/>
       <Navbar/>
+      <SearchNav/>
       {atm?<AddAtm/>:""}
        <Routes>
             <Route path="/" Component={HomePage}/>

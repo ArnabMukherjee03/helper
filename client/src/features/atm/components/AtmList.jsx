@@ -161,7 +161,7 @@ const AtmList = () => {
         ) : (
           <div className="flex flex-wrap w-full lg:w-[75%] gap-5 ">
              <div onClick={toggleNavbar} className="flex w-full justify-end font-primary  lg:hidden">Filters</div>
-            {atms &&
+            {atms && atms.length >0 ?
               atms.map((atm) => {
                 return (
                   <div key={atm._id} className="flex justify-center items-center h-auto w-full lg:w-[48%]">
@@ -191,7 +191,8 @@ const AtmList = () => {
                     {/* Atm Details:: End */}
                   </div>
                 );
-              })}
+              }):
+              <div className="w-full flex items-center justify-center font-primary text-lg text-red-500">No Results Found</div>}
           </div>
         )}
         {/* End :: Product Section */}

@@ -8,7 +8,7 @@ const Banner = () => {
         {/* Head & Sub Heading :: Start */}
         <div className="w-full pt-[20px] pl-5 md:pt-[60px] md:pl-8 lg:w-[40%] lg:pt-[130px] lg:pl-[60px]">
           <div className="font-primary leading-[1.2] text-[30px]  lg:text-[40px]">
-            <span className="text-[#3cb878]">Locate Atm's</span> With
+            <span className="text-[#3cb878]">Locate Atms</span> With
             <br/> 
             Cash Availability!
           </div>
