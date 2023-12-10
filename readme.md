@@ -5,10 +5,10 @@ The primary objective of the ATM Cash Availability Tracker is to provide a user-
 
 ## Images
 
-![App Screenshot](/Demo/home%20page.png)
-![App Screenshot](/Demo/list.png)
-![App Screenshot](/Demo/Atm.png)
-![App Screenshot](/Demo/login.png)
+![App Screenshot](/demo/home%20page.png)
+![App Screenshot](/demo/list.png)
+![App Screenshot](/demo/Atm.png)
+![App Screenshot](/demo/login.png)
 
 
 ## 🎯 Features
